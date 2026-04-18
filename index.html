@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mario Alemany | Portfolio & Writing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-layout">
+      <aside class="sidebar">
+        <div class="brand-block">
+          <button class="brand-home" id="home-trigger" type="button">Mario Alemany</button>
+        </div>
+        <nav class="tree-nav" aria-label="Site sections">
+          <ul class="tree-root">
+            <li class="tree-item">
+              <div class="tree-row">
+                <button class="tree-toggle tree-folder-toggle" aria-expanded="false" aria-controls="work-group">
+                  <span class="arrow" aria-hidden="true"></span>
+                  <span class="tree-folder-label"
+                    ><span class="folder-name">work</span><span class="folder-slash">/</span></span>
+                </button>
+              </div>
+              <ul class="tree-group" id="work-group">
+                <li class="tree-item">
+                  <button class="tree-leaf" data-tab="projects" aria-selected="false">projects</button>
+                </li>
+                <li class="tree-item">
+                  <button class="tree-leaf" data-tab="research" aria-selected="false">papers</button>
+                </li>
+                <li class="tree-item">
+                  <button class="tree-leaf" data-tab="accounts" aria-selected="false">accounts</button>
+                </li>
+              </ul>
+            </li>
+            <li class="tree-item">
+              <button class="tree-leaf tree-leaf-standalone" data-tab="about" aria-selected="false">about</button>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <section class="content-area">
+        <section class="landing active" id="landing">
+          <div
+            class="landing-stack landing-stack--deck"
+            id="cover-deck"
+            aria-label="Featured portraits. Click a photo to cycle the stack."
+          >
+            <img src="img/cover1.jpeg" alt="Cover photo 1" class="stack-photo" data-cover="0" />
+            <img src="img/cover2.jpeg" alt="Cover photo 2" class="stack-photo" data-cover="1" />
+            <img src="img/cover3.jpeg" alt="Cover photo 3" class="stack-photo" data-cover="2" />
+          </div>
+        </section>
+
+        <section class="panel" id="projects">
+          <div class="section-head">
+            <h2>Projects</h2>
+            <button class="shuffle-button" id="projects-shuffle" type="button">shuffle</button>
+          </div>
+          <div id="projects-list" class="projects-grid"></div>
+        </section>
+
+        <section class="panel" id="accounts">
+          <div class="section-head">
+            <h2>Accounts</h2>
+          </div>
+          <div id="accounts-list" class="accounts-list"></div>
+        </section>
+
+        <section class="panel" id="research">
+          <div class="section-head">
+            <h2>Papers</h2>
+          </div>
+          <div id="papers-content" class="papers-content"></div>
+        </section>
+
+        <section class="panel" id="about">
+          <h2>About</h2>
+          <div id="about-bio" class="about-bio"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
