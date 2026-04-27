@@ -152,36 +152,6 @@ function formatBioHtml(raw) {
     .join("");
 }
 
-function renderPapersMarkup(items) {
-  if (!items.length) {
-    return '<p class="coming-soon">coming soon...</p>';
-  }
-
-  const cards = items
-    .map((paper) => {
-      const link = sanitizeUrl(paper.link);
-      const linkMarkup =
-        link === "#"
-          ? ""
-          : `<a class="project-link" href="${link}" target="_blank" rel="noopener noreferrer">visit</a>`;
-      const statusLine = paper.status
-        ? `<p class="project-tech">${escapeHtml(paper.status)}</p>`
-        : "";
-
-      return `
-      <article class="card">
-        <h3>${escapeHtml(paper.title || "Untitled")}</h3>
-        <p class="meta">${escapeHtml(paper.description || "")}</p>
-        ${statusLine}
-        ${linkMarkup}
-      </article>
-    `;
-    })
-    .join("");
-
-  return `<div id="papers-list" class="projects-grid">${cards}</div>`;
-}
-
 async function loadBio() {
   const el = document.getElementById("about-bio");
   if (!el) return;
@@ -195,30 +165,6 @@ async function loadBio() {
     el.innerHTML = formatBioHtml(text);
   } catch (error) {
     el.innerHTML = `<p class="meta">${escapeHtml(error.message)}</p>`;
-  }
-}
-
-async function loadPapers() {
-  const el = document.getElementById("papers-content");
-  if (!el) return;
-
-  try {
-    const response = await fetch("data/papers.json", { cache: "no-store" });
-    if (!response.ok) {
-      throw new Error(`Could not load data/papers.json (${response.status})`);
-    }
-
-    const data = await response.json();
-    const papersList =
-      data && Array.isArray(data.papers)
-        ? data.papers
-        : Array.isArray(data)
-          ? data
-          : [];
-
-    el.innerHTML = renderPapersMarkup(papersList);
-  } catch {
-    el.innerHTML = '<p class="coming-soon">coming soon...</p>';
   }
 }
 
@@ -370,7 +316,6 @@ function initCoverDeck() {
 loadProjects();
 loadAccounts();
 loadBio();
-loadPapers();
 initCoverDeck();
 
 const initialTab = window.location.hash.replace("#", "");
